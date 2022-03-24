@@ -18,6 +18,10 @@ HPzlutakPokracovatButtonXpathStep3 = "/html/body[@id='homepage']/header[@class='
 HPzlutakPridatPokojXpath = "//*[contains(text(), 'přidat pokoj')]"
 HPzlutakObsazenost2plus1Xpath = "//*[contains(text(), 'Rodina 2+1')]"
 HPzlutakPotvrditAvyhledatXpath = "//*[@class='f_button f_button--common'] //*[contains(text(), 'Potvrdit a vyhledat')]"
+HPnejlepsiZajezdyVypisXpath = "//*[@class='fshr-lm-table-item-content']"
+HPnejlepsiZajezdySwitchButtonXpath = "//*[@class='f_switch-button']"
+
+
 class Test_HP_C(unittest.TestCase):
     def setUp(self):
         setUp(self)
@@ -58,3 +62,23 @@ class Test_HP_C(unittest.TestCase):
         wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPzlutakPotvrditAvyhledatXpath))).click()
         time.sleep(1)
         SRL_D(self, self.driver)
+
+    def test_HP_nejlepsi_nabidky_vypis_btn_switch(self):
+        self.driver.get(URL)
+        wait = WebDriverWait(self.driver, 300)
+        self.driver.maximize_window()
+        acceptConsent(self.driver)
+        wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnejlepsiZajezdyVypisXpath)))
+        nejlepsiNabidkyElement = self.driver.find_elements_by_xpath(HPnejlepsiZajezdyVypisXpath)
+        positionOfCurrentElement = 0
+        nejlepsiNabidkyTextList = []
+        for _ in nejlepsiNabidkyElement:
+            nejlepsiNabidkyTextDefault = nejlepsiNabidkyElement[positionOfCurrentElement].text
+            nejlepsiNabidkyTextList.append(nejlepsiNabidkyTextDefault)
+            print (nejlepsiNabidkyTextList)
+            positionOfCurrentElement = positionOfCurrentElement+1
+
+        wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnejlepsiZajezdySwitchButtonXpath)))
+        HPnejlepsiZajezdySwitchButtonElement = self.driver.find_element_by_xpath(HPnejlepsiZajezdySwitchButtonXpath)
+        self.driver.execute_script("arguments[0].click();", HPnejlepsiZajezdySwitchButtonElement)
+        time.sleep(20)
