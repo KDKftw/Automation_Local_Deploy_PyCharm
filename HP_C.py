@@ -75,10 +75,23 @@ class Test_HP_C(unittest.TestCase):
         for _ in nejlepsiNabidkyElement:
             nejlepsiNabidkyTextDefault = nejlepsiNabidkyElement[positionOfCurrentElement].text
             nejlepsiNabidkyTextList.append(nejlepsiNabidkyTextDefault)
-            print (nejlepsiNabidkyTextList)
+            #print (nejlepsiNabidkyTextList)
             positionOfCurrentElement = positionOfCurrentElement+1
 
         wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnejlepsiZajezdySwitchButtonXpath)))
         HPnejlepsiZajezdySwitchButtonElement = self.driver.find_element_by_xpath(HPnejlepsiZajezdySwitchButtonXpath)
         self.driver.execute_script("arguments[0].click();", HPnejlepsiZajezdySwitchButtonElement)
-        time.sleep(20)
+        time.sleep(1.5)
+        self.driver.implicitly_wait(10)
+        nejlepsiNabidkyElement = self.driver.find_elements_by_xpath(HPnejlepsiZajezdyVypisXpath)
+        positionOfCurrentElement2 = 0
+        nejlepsiNabidkyTextList2 = []
+        for _ in nejlepsiNabidkyElement:
+            nejlepsiNabidkyTextDefault = nejlepsiNabidkyElement[positionOfCurrentElement2].text
+            nejlepsiNabidkyTextList2.append(nejlepsiNabidkyTextDefault)
+            #print(nejlepsiNabidkyTextList)
+            positionOfCurrentElement2 = positionOfCurrentElement2 + 1
+
+        print(nejlepsiNabidkyTextList)
+        print(nejlepsiNabidkyTextList2)
+        assert nejlepsiNabidkyTextList != nejlepsiNabidkyTextList2
