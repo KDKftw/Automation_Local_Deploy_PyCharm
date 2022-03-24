@@ -4,8 +4,11 @@ from to_import import acceptConsent, URL, setUp, tearDown
 import unittest
 from selenium.webdriver.support import expected_conditions as EC
 from groupsearch_D import groupSearch_D
+from Detail_D import detail_D
 from SRL_D import SRL_D
 import time
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 HPvyhledatZajezdyButtonXpath = "/html/body[@id='homepage']/header[@class='f_pageHeader js_header']/div[@class='f_pageHeader-content']/div[@class='f_pageHeader-item f_pageHeader-item--holder']/div/div[@class='f_filterMainSearch']/div/div[@class='f_filterMainSearch-content']/div[@class='f_filterMainSearch-content-item'][5]/a[@class='f_button f_button--common']/span[@class='f_button-text f_icon f_icon--chevronRight f_icon_set--right']"
 HPkamPojedeteButtonXpath = "//*[contains(text(), 'Kam pojedete?')]"
@@ -20,7 +23,8 @@ HPzlutakObsazenost2plus1Xpath = "//*[contains(text(), 'Rodina 2+1')]"
 HPzlutakPotvrditAvyhledatXpath = "//*[@class='f_button f_button--common'] //*[contains(text(), 'Potvrdit a vyhledat')]"
 HPnejlepsiZajezdyVypisXpath = "//*[@class='fshr-lm-table-item-content']"
 HPnejlepsiZajezdySwitchButtonXpath = "//*[@class='f_switch-button']"
-
+HPnextArrowXpath = "//*[@class='slick-next slick-arrow']"
+HPkartaHoteluSliderXpath = "//*[@class='f_carousel-item slick-slide slick-active']"
 
 class Test_HP_C(unittest.TestCase):
     def setUp(self):
@@ -95,3 +99,38 @@ class Test_HP_C(unittest.TestCase):
         print(nejlepsiNabidkyTextList)
         print(nejlepsiNabidkyTextList2)
         assert nejlepsiNabidkyTextList != nejlepsiNabidkyTextList2
+
+    def test_HP_slider_click_detail_hotelu(self):
+        self.driver.get(URL)
+        wait = WebDriverWait(self.driver, 300)
+        self.driver.maximize_window()
+        acceptConsent(self.driver)
+        #wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnextArrowXpath))).click()
+        time.sleep(10)
+        self.driver.implicitly_wait(100)
+
+        HPnextArrowElement = self.driver.find_element_by_xpath(HPnextArrowXpath)
+        self.driver.execute_script("arguments[0].scrollIntoView();", HPnextArrowElement)
+        self.driver.execute_script("arguments[0].click();", HPnextArrowElement)
+        time.sleep(0.3)
+        self.driver.execute_script("arguments[0].click();", HPnextArrowElement)
+        time.sleep(0.5)
+        self.driver.execute_script("arguments[0].click();", HPnextArrowElement)
+        time.sleep(0.5)
+        self.driver.execute_script("arguments[0].click();", HPnextArrowElement)
+        time.sleep(0.5)
+        self.driver.execute_script("arguments[0].click();", HPnextArrowElement)
+        #HPnextkartaHoteluSlider = self.driver.find_element_by_xpath(HPkartaHoteluSliderXpath)
+        time.sleep(1)
+        #self.driver.execute_script("arguments[0].click();", HPnextkartaHoteluSlider)
+        action = ActionChains(self.driver)
+        HPkartaHoteluSliderElement = self.driver.find_element_by_xpath(HPkartaHoteluSliderXpath)
+        #self.driver.execute_script("arguments[0].scrollIntoView();", HPkartaHoteluSliderElement)
+        #action.move_to_element(HPkartaHoteluSliderElement).click().perform()
+        self.driver.implicitly_wait(100)
+        time.sleep(0.3)
+        HPkartaHoteluSliderElement.click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        detail_D(self, self.driver)
+
+
