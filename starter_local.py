@@ -13,6 +13,7 @@ from poznavacky import *
 from SDO_D import *
 from SRL_C import *
 from SRL_D import *
+from HP_C import *
 import HtmlTestRunner
 #import HTMLTestRunner      ##at office PC gotta be set up like that (???)
 
@@ -43,6 +44,10 @@ def suite():
     suite.addTest(Test_SRL_C('test_SRL_filtr_strava'))
     suite.addTest(Test_SRL_C('test_srl_C'))
     suite.addTest(TestSRL_D('test_SRL_D'))
+    suite.addTest(Test_HP_C('test_HP_zlutak_to_SRL'))
+    suite.addTest(Test_HP_C('test_HP_zlutak_to_groupsearch'))
+    suite.addTest(Test_HP_C('test_HP_nejlepsi_nabidky_vypis_btn_switch'))
+    suite.addTest(Test_HP_C('test_HP_slider_click_detail_hotelu'))
     return suite
 
 def suite2():
