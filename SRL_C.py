@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException, ElementNotInteractableException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from to_import import acceptConsent, closeExponeaBanner, URL_SRL, sendEmail, setUp, tearDown
+from to_import import acceptConsent, closeExponeaBanner, URL_SRL, sendEmail, setUp, tearDown, generalDriverWaitImplicit
 import time
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
@@ -256,6 +256,7 @@ class Test_SRL_C(unittest.TestCase):
         stravaMenu.click()
         time.sleep(2)
 
+        generalDriverWaitImplicit(driver)
         allinclusiveMenu = driver.find_element_by_xpath(
             "//*[@class='f_menu-item-content f_menu-item-content--sub'] //*[@class='f_input-label'] //*[contains(text(), 'All inclusive')]")  ##papani v menu ma vzdy vlastni value, 5=all inclusive
         allinclusiveMenu.click()
