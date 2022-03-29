@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
-from to_import import acceptConsent, URL, setUp, tearDown
+from to_import import acceptConsent, URL, setUp, tearDown, generalDriverWaitImplicit
 import unittest
 from selenium.webdriver.support import expected_conditions as EC
 from groupsearch_D import groupSearch_D
@@ -77,6 +77,7 @@ class Test_HP_C(unittest.TestCase):
         time.sleep(
             0.3)  ##this is to workaround accept consent since in maximizes and then selenium gets confused with clickin on the element
         acceptConsent(self.driver)
+        generalDriverWaitImplicit(self.driver)
         wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnejlepsiZajezdyVypisXpath)))
         nejlepsiNabidkyElement = self.driver.find_elements_by_xpath(HPnejlepsiZajezdyVypisXpath)
         positionOfCurrentElement = 0
