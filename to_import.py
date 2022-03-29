@@ -42,7 +42,7 @@ def setUp(self):
   #self.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
   #self.driver = webdriver.Opera(executable_path=OperaDriverManager().install())
   #self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
-  generalDriverWaitImplicit(self.driver)
+  #generalDriverWaitImplicit(self.driver)
 def tearDown(self):
   self.driver.quit()
 
