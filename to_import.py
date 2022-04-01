@@ -5,7 +5,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.opera import OperaDriverManager
 
-URL = "https://www.fischer.cz"
+URL = "https://www.fischer.cz/"
 #URL = "https://www.fischer.sk/"
 #URL = "https://www.eximtours.cz/"
 #URL = "https://www.etravel.cz"
