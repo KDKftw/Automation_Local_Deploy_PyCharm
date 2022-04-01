@@ -1,5 +1,5 @@
 from webdriver_manager.chrome import ChromeDriverManager
-from to_import import acceptConsent, URL_poznavacky, URL_poznavacky_vikendy, URL_poznavacky_rodiny, URL_pobocky, setUp, tearDown
+from to_import import acceptConsent, URL_poznavacky, URL_poznavacky_vikendy, URL_poznavacky_rodiny, URL_pobocky, setUp, tearDown, generalDriverWaitImplicit
 import time
 import unittest
 
@@ -17,6 +17,7 @@ class TestPobocky_D(unittest.TestCase):
         acceptConsent(self.driver)
         self.driver.maximize_window()
         time.sleep(2)
+        generalDriverWaitImplicit(self.driver)
         mapa = self.driver.find_element_by_xpath("//*[@class='leaflet-pane leaflet-tile-pane']")    ## jen jeden element, no need to call find_elementS
 
         mapaDisplayed = mapa.is_displayed()

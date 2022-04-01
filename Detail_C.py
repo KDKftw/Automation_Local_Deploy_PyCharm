@@ -187,10 +187,11 @@ class TestDetailHotelu_C(unittest.TestCase):
 
 
         self.driver.get(URL_detail)
-
+        self.driver.maximize_window()
+        time.sleep(1)
         acceptConsent(self.driver)
 
-        time.sleep(1)
+
         closeExponeaBanner(self.driver)
         wait = WebDriverWait(self.driver, 150000)
 
