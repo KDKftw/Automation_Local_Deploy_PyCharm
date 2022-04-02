@@ -116,6 +116,7 @@ class Test_SRL_C(unittest.TestCase):
         acceptConsent(driver)
         time.sleep(2)
         closeExponeaBanner(driver)
+        generalDriverWaitImplicit(self.driver)
         zobrazitNaMape = driver.find_element_by_xpath("//*[@class='f_bar-item f_bar-map']")
         zobrazitNaMape.click()
 
