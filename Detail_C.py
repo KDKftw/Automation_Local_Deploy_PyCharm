@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
-from to_import import acceptConsent, closeExponeaBanner, URL_detail, sendEmail, setUp, tearDown
+from to_import import acceptConsent, closeExponeaBanner, URL_detail, sendEmail, setUp, tearDown, generalDriverWaitImplicit
 import time
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
@@ -68,17 +68,16 @@ class TestDetailHotelu_C(unittest.TestCase):
 
         self.driver.get(URL_detail)
         wait = WebDriverWait(self.driver, 150000)
-        acceptConsent(self.driver)
-
+        self.driver.maximize_window()
         time.sleep(1)
-        closeExponeaBanner(self.driver)
-
+        acceptConsent(self.driver)
         try:
             terminyCeny = self.driver.find_element_by_xpath("//*[@id='terminyaceny-tab']")
             wait.until(EC.visibility_of(terminyCeny))
             ##terminyCeny.click()
             self.driver.execute_script("arguments[0].click();", terminyCeny)
             try:
+                generalDriverWaitImplicit(self.driver)
                 potvrdit = self.driver.find_element_by_xpath("//*[@data-testid='popup-closeButton']")
 
                 self.driver.execute_script("arguments[0].click();", potvrdit)
@@ -140,6 +139,7 @@ class TestDetailHotelu_C(unittest.TestCase):
 
         print(zvolenaStravaVboxuString)
 
+        time.sleep(1.2)
         stravaVterminech = self.driver.find_elements_by_xpath(
             "//*[@class='fshr-termin-catering js-tooltip js-tooltip--onlyDesktop']")
         stravaVterminechString = []
@@ -169,6 +169,7 @@ class TestDetailHotelu_C(unittest.TestCase):
                 sendEmail(msg)
                 y = y + 1
         time.sleep(1)
+        assert stravaVterminechString[0] == zvolenaStravaVboxuString
         ##print(stravaVterminech)
         ##print(stravaVterminechString)
 
