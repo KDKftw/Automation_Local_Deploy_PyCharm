@@ -52,4 +52,3 @@ class TestDetskeKluby_D(unittest.TestCase):
             c=c+1
             print("tile img")
 
-        
