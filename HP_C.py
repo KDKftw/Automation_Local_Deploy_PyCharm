@@ -47,8 +47,7 @@ class Test_HP_C(unittest.TestCase):
         self.driver.get(URL)
         wait = WebDriverWait(self.driver, 300)
         self.driver.maximize_window()
-        time.sleep(
-            0.3)  ##this is to workaround accept consent since in maximizes and then selenium gets confused with clickin on the element
+        time.sleep(0.3)  ##this is to workaround accept consent since in maximizes and then selenium gets confused with clickin on the element
         acceptConsent(self.driver)
         wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPkamPojedeteButtonXpath))).click()
 
@@ -114,7 +113,7 @@ class Test_HP_C(unittest.TestCase):
             0.3)  ##this is to workaround accept consent since in maximizes and then selenium gets confused with clickin on the element
         acceptConsent(self.driver)
         #wait.until(EC.visibility_of(self.driver.find_element_by_xpath(HPnextArrowXpath))).click()
-        time.sleep(10)
+        #time.sleep(10)
         self.driver.implicitly_wait(100)
 
         HPnextArrowElement = self.driver.find_element_by_xpath(HPnextArrowXpath)
