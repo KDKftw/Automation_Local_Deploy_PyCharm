@@ -3,7 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from to_import import acceptConsent, sendEmail, URL_SRL, setUp, tearDown
 from selenium.webdriver.support import expected_conditions as EC
 import unittest
-
+import time
 SRLhotelyKartyXpath = "//*[@class='f_searchResult'and not(@style='display: none;')]//*[@class='f_searchResult-content-item']"
 SRLfotkyKartyXpath = "//*[@class='f_searchResult'and not(@style='display: none;')]//*[@class='f_tileGallery']"
 #SRLcenaKartyXpath = "//*[@class='f_searchResult'and not(@style='display: none;')]//*[@class='f_price']"
@@ -109,7 +109,8 @@ class TestSRL_D(unittest.TestCase):
         tearDown(self)
 
     def test_SRL_D(self):
-        self.driver.get(URL_SRL)
         self.driver.maximize_window()
+        self.driver.get(URL_SRL)
+        time.sleep(0.4)
         acceptConsent(self.driver)
         SRL_D(self, self.driver)

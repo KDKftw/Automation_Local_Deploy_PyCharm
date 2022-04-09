@@ -5,8 +5,6 @@ import unittest
 
 def poznavacky_check_D(self, driver):
     self.driver.maximize_window()
-    #self.driver.execute_script("window.scrollTo(0, 1080);")
-
     generalDriverWaitImplicit(self.driver)
     generalDriverWaitImplicit(self.driver)
 
