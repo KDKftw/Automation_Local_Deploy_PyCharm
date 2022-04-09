@@ -64,16 +64,7 @@ def SRL_D(self, driver):
         msg = " Problem s fotkami hotelu v searchi " + url
         sendEmail(msg)
 
-    try:
-        loadingImgSingle = self.driver.find_element_by_xpath(
-            "//*[@class='splide__spinner']")  ##loading classa obrazku, jestli tam je = not gud
-        if loadingImgSingle.is_displayed():
-            url = self.driver.current_url
-            msg = " Problem s načítáná fotek v SRL  //*[@class='splide__spinner']" + url
-            sendEmail(msg)
-            assert 1 == 2
-    except NoSuchElementException:
-        pass
+
 
     try:
         self.driver.implicitly_wait(100)
@@ -100,6 +91,17 @@ def SRL_D(self, driver):
         sendEmail(msg)
 
     assert cenaAll[0].is_displayed() == True
+
+    try:
+        loadingImgSingle = self.driver.find_element_by_xpath(
+            "//*[@class='splide__spinner']")  ##loading classa obrazku, jestli tam je = not gud
+        if loadingImgSingle.is_displayed():
+            url = self.driver.current_url
+            msg = " Problem s načítáná fotek v SRL  //*[@class='splide__spinner']" + url
+            sendEmail(msg)
+            assert 1 == 2
+    except NoSuchElementException:
+        pass
 
 class TestSRL_D(unittest.TestCase):
     def setUp(self):
