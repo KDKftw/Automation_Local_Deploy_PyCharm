@@ -51,7 +51,7 @@ def generalDriverWaitImplicit(driver):
 def acceptConsent(driver):
 
   generalDriverWaitImplicit(driver)
-  # time.sleep(5)
+  time.sleep(3)
   try:
     element = driver.execute_script(
       """return document.querySelector('#usercentrics-root').shadowRoot.querySelector("button[data-testid='uc-accept-all-button']")""")
