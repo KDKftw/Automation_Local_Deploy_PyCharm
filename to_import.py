@@ -35,13 +35,18 @@ import smtplib, ssl
 from email.mime.text import MIMEText
 from to_import_secret import emailPass
 from selenium import webdriver
+from to_import_secret import comandExecutor
 from webdriver_manager.chrome import ChromeDriverManager
 
 def setUp(self):
-  self.driver = webdriver.Chrome(ChromeDriverManager().install())
+  #self.driver = webdriver.Chrome(ChromeDriverManager().install())
+  self.driver = webdriver.Remote(
+      command_executor=comandExecutor,
+      desired_capabilities=desired_cap)
   #self.driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()))
   #self.driver = webdriver.Opera(executable_path=OperaDriverManager().install())
   #self.driver = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+  #webdriver.Safari(executable_path=SafariDriverManager().install())
   #generalDriverWaitImplicit(self.driver)
 def tearDown(self):
   self.driver.quit()
